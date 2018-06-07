@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universities CRUD</title>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <div class="container">
+        <a href="index.html" class="brand-logo left"><img class="responsive-img" id="logo" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/928/890736928_1ce445b8-5c83-413b-b50a-b81dfa2d54f4.png?cb=1528321300"/></a>
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="file:///Users/Nic/Desktop/Galvanize/university_crud_FE/index.html#ViewUniversityList">View/Edit University List</a></li>
+          <li><a href="file:///Users/Nic/Desktop/Galvanize/university_crud_FE/index.html#AddAUniversity">Add a University</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s6" id="thisNeedsToBeWhite">Drag and drop anything you'd like in a university in the box below!</div>
+      <div class="col s6" id="thisNeedsToBeWhite">Drag and drop anything you'd dislike in a university in the box below!</div>
+    </div>
+    <div class="center" id="thisNeedsToBeWhite">When done hit the calculate button below the keywords to see your results!<br>(Hint: The more keywords the stronger your results)</div>
+    <br>
+    <div class="row">
+      <div class="col s6" id="thisNeedsToBeWhite">Likes:
+        <ol data-draggable="target1">
+          <div class="container">
+        </ol>
+        </div>
+        <div class="col s6" id="thisNeedsToBeWhite">Dislikes:
+          <ol data-draggable="target1">
+
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="content" id="listOfItems">
+      <br>
+      <div class="row" id="listOfItemsContent">
+      </div>
+      <br>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <a name="ViewUniversityList"></a>
+    <div class="h2 mx-auto" id="app-start">
+      <button type="button" class="btn btn-success" id="refresh-universities">Refresh Universities</button>
+      <button type="button" class="btn btn-success right" id="Calculate">Calculate University Match</button>
+    </div>
+    <br>
+    <div class="row"  id="listOfItems">
+      <div class="col s12">
+        <div id="app"></div>
+        <a name="AddAUniversity"></a>
+        <br>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script src="./axios.js" type="text/javascript"></script>
+  <script src="./app.js" type="text/javascript"></script>
+
+</body>
+
+</html>
