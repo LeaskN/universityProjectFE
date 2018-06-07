@@ -172,6 +172,8 @@ window.addEventListener('load', () => {
       columnEl.className = 'col';
       const draggableEl = document.createElement('div');
       draggableEl.setAttribute('data-draggable', 'item');
+      draggableEl.setAttribute('draggable', 'true');
+      draggableEl.setAttribute('aria-grabbed', 'false');
       draggableEl.innerHTML = keywords[i];
       columnEl.appendChild(draggableEl);
       document.getElementById('listOfItemsContent').appendChild(columnEl)
