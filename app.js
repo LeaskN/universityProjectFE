@@ -1,25 +1,22 @@
+function reset() {
+  location.reload();
+}
+
 window.addEventListener('load', () => {
       console.log('Ready to go!!');
+      const baseURL = 'https://university-crud.herokuapp.com/universities' || 'http://localhost:3020/universities';
       let allKeywords;
-
-
       function allowDrop(ev) {
         ev.preventDefault();
       }
-
       function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
       }
-
       function drop(ev) {
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
       }
-
-
-      const baseURL = 'http://localhost:3020/universities';
-
       const createUniversity = () => {
         event.preventDefault();
         console.log('createUniversity');
@@ -214,55 +211,44 @@ window.addEventListener('load', () => {
             amountOfKeywords = allKeywords.length
             loadKeywords(allKeywords);
 
-
+            let count = 0;
+            let biggestScore = 0;
+            let bestMatch;
             for (var i = 0; i < universities.data.length; i++) {
+              let stopIndicator = universities.data.length;
               let keyWords = universities.data[i].keywords;
+              let uniName = universities.data[i].name;
               let punctuation = `‘:${"`"}~!@#$%^&*()_+-={}|[]:";<>?,./’`;
               let noPuncLowerCaseArr = [];
               let finalString = '';
 
               document.getElementById(`Calculate`).addEventListener('click', () => {
+
                 let positiveString = '';
-                let negativeString = '';
-                const allPositives = document.getElementById('positives').querySelectorAll('.listItem');
+                const positiveBox = document.querySelector('#positives')
+                const allPositives = positiveBox.querySelectorAll('.listItem');
                 for (let item of allPositives.values()) {
                   positiveString += item.innerText;
                 }
-                const allNegatives = document.getElementById('negatives').querySelectorAll('.listItem');
-                for (let item of allNegatives.values()) {
-                  negativeString += item.innerText;
-                }
+                let positivePoints = preppingParaPos(positiveString)
+                  function preppingParaPos(string) {
+                      let noPunc = '';
 
-                console.log(positiveString);
-                console.log(negativeString);
-                console.log(preppingPara(positiveString));
-                console.log(preppingPara(negativeString));
-
-
-
-                  // let keyWords = universities.data[i].keywords
-
-                  function preppingPara(string) {
-                    let longerThanThree = '';
-                    let noPunc = '';
-
-                    for (var i = 0; i < string.length; i++){
+                    for (let i = 0; i < string.length; i++){
                       if (punctuation.indexOf(string[i]) === -1){
                         noPunc += string[i].toLowerCase();
                       }
                     }
                     let noPuncWordsLowerCase = noPunc.split(' ');
-                    for (var i = 0; i < noPuncWordsLowerCase.length; i++) {
+                    for (let i = 0; i < noPuncWordsLowerCase.length; i++) {
                       if (noPuncWordsLowerCase[i].length > 3){
                         finalString += noPuncWordsLowerCase[i];
                       }
                     }
-                    return preppingInput(keyWords);
+                    return preppingInputPos(keyWords);
                   }
 
-                  function preppingInput(string) {
-                    let longerThanThree = '';
-                    let noPunctuationLower = '';
+                  function preppingInputPos(string) {
                     let finalArray = [];
                     let noPuncLowerCase = '';
 
@@ -279,23 +265,31 @@ window.addEventListener('load', () => {
                         finalArray.push(noPuncLowerCaseArr[i]);
                       }
                     }
-                    return comparingWords(finalArray, finalString);
+                    return comparingWordsPos(finalArray, finalString);
                   }
 
-                  function comparingWords (array, string) {
+                  function comparingWordsPos (array, string) {
                     let score = 0;
-                    for (var i = 0; i < array.length; i++) {
+                    for (let i = 0; i < array.length; i++) {
                       let word = array[i];
                       if (string.indexOf(word) > -1){
                         score++;
                       }
-
+                    }
+                    count++;
+                    if(score > biggestScore){
+                      biggestScore = score;
+                      bestMatch = uniName;
+                    }
+                    // alert(`Your best match was with ${bestMatch} at a score of ${biggestScore} points!`);
+                    console.log(stopIndicator);
+                    console.log(count)
+                    if(count === stopIndicator){
+                      if(!alert(`Your best match was with ${bestMatch} at a score of ${biggestScore} points!`)){window.location.reload();};
                     }
                     return score;
                   }
-                
               });
-
             }
             universities.data.forEach(university => {
               const trEl = document.createElement('tr');

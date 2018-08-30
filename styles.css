@@ -1,10 +1,12 @@
 body {
   background-image: url("https://images.unsplash.com/photo-1462536943532-57a629f6cc60?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b0a61bab8c6f01c30f8c3654d172ece6&auto=format&fit=crop&w=3000&q=80");
 }
+button{
+	overflow: hidden;
+}
 #thisNeedsToBeWhite {
     color: white;
 }
-/* draggable targets */
 [data-draggable="target1"]
 {
 	float:left;
@@ -16,7 +18,6 @@ body {
 	border:2px solid #888;
   border-radius: 15px;
   background: rgba(255,255,255,0.5);
-  /* background-color: #2BBCAD; */
 	color:#555;
 }
 #listOfItems{
@@ -40,20 +41,17 @@ img {
     margin-top: 10%;
     margin-bottom: auto;
 }
-/* drop target state */
 [data-draggable="target1"][aria-dropeffect="move"]
 {
 	border-color:#68b;
 	background:#fff;
 }
-/* drop target focus and dragover state */
 [data-draggable="target1"][aria-dropeffect="move"]:focus,
 [data-draggable="target1"][aria-dropeffect="move"].dragover
 {
 	outline:none;
 	box-shadow:0 0 0 1px #fff, 0 0 0 3px #68b;
 }
-/* draggable items */
 [data-draggable="item"]
 {
 	display: block;
@@ -67,13 +65,11 @@ img {
   background: rgba(255,888,255,0.7);
   margin-top: 10px;
 }
-/* items focus state */
 [data-draggable="item"]:focus
 {
 	outline:none;
 	box-shadow:0 0 0 2px #68b, inset 0 0 0 1px #ddd;
 }
-/* items grabbed state */
 [data-draggable="item"][aria-grabbed="true"]
 {
 	background:#8ad;
